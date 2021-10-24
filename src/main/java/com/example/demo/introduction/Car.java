@@ -34,10 +34,12 @@ public class Car {
     public Car(){
         System.out.println(String.format("Машина создан"));
     }
+
     @PostConstruct
     public void init(){
         System.out.println(String.format("Проинициализирована машина с именем %s",fullName));
     }
+
     @PreDestroy
     public void destroy(){
         System.out.println(String.format("Попала на свалку %s", fullName));

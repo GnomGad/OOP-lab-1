@@ -19,18 +19,17 @@ public class Employee {
     public void setName(String name){
         this.name = name;
     }
+
     @Value("${employee.age}")
     public void setAge(int age){
         this.age = age;
     }
 
-    @Autowired
     @Qualifier("dog")
     public void setPet(Pet pet){
         this.pet = pet;
     }
 
-    @Autowired
     @Qualifier("car")
     public void setCar(Car car){
         this.car = car;
@@ -43,10 +42,10 @@ public class Employee {
         return age;
     }
 
-    @Autowired
-    public Employee(Pet pet){
+    public Employee(Pet pet, Car car){
         System.out.println(String.format("Работник создан"));
         this.pet = pet;
+        this.car = car;
     }
 
     public void printAboutMe(){
