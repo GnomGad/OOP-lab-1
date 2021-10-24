@@ -4,16 +4,24 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
         <context:property-placeholder location="application.properties"/>
-        <bean id="myPet" class="com.example.demo.introduction.Nigga">
-
+        <bean id="myPet"
+              class="com.example.demo.introduction.Nigga"
+              init-method="init"
+              destroy-method="destroy">
         </bean>
 
-        <bean id="myCar" class="com.example.demo.introduction.Car">
+        <bean id="myCar"
+              class="com.example.demo.introduction.Car"
+              init-method="init"
+              destroy-method="destroy">
                 <property name="fullName" value="${car.fullName}"/>
                 <property name="mileage" value="${car.milleage}"/>
         </bean>
 
-        <bean id="myEmployee" class="com.example.demo.introduction.Employee">
+        <bean id="myEmployee"
+              class="com.example.demo.introduction.Employee"
+              init-method="init"
+              destroy-method="destroy">
                 <property name="name" value="${employee.name}"/>
                 <property name="age" value="${employee.age}"/>
                 <property name="pet" ref="myPet"/>

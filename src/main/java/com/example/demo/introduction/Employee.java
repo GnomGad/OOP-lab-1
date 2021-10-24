@@ -1,23 +1,37 @@
 package com.example.demo.introduction;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+@Component("employeeBean")
 public class Employee {
     private String name;
     private int age;
     private Pet pet;
     private Car car;
 
+    @Value("${employee.name}")
     public void setName(String name){
         this.name = name;
     }
-
+    @Value("${employee.age}")
     public void setAge(int age){
         this.age = age;
     }
 
+    @Autowired
+    @Qualifier("dog")
     public void setPet(Pet pet){
         this.pet = pet;
     }
 
+    @Autowired
+    @Qualifier("car")
     public void setCar(Car car){
         this.car = car;
     }
@@ -27,6 +41,12 @@ public class Employee {
     }
     public int getAge(){
         return age;
+    }
+
+    @Autowired
+    public Employee(Pet pet){
+        System.out.println(String.format("Работник создан"));
+        this.pet = pet;
     }
 
     public void printAboutMe(){
@@ -42,5 +62,15 @@ public class Employee {
     public void callPet(){
         System.out.println("Мой питомец говорит");
         pet.say();
+    }
+
+    @PostConstruct
+    public void init(){
+        System.out.println(String.format("Работник %s проициниализирован", name));
+    }
+
+    @PreDestroy
+    public void destroy(){
+        System.out.println(String.format("Работник %s убит", name));
     }
 }
